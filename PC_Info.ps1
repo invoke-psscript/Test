@@ -2,7 +2,7 @@ hostname > C:\ComputerInfo.txt
 "----------" >> C:\ComputerInfo.txt
 "" >> C:\ComputerInfo.txt
 $env:logonserver >> C:\ComputerInfo.txt
-nltest /DSGETDC:burlington.evertz.tv >> C:\ComputerInfo.txt
+nltest /DSGETDC: >> C:\ComputerInfo.txt
 Get-WmiObject win32_bios | Select serialnumber >> C:\ComputerInfo.txt
 "----------" >> C:\ComputerInfo.txt
 Get-WmiObject win32_computersystem | Select * >> C:\ComputerInfo.txt
