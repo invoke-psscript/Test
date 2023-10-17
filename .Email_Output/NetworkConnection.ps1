@@ -36,7 +36,7 @@ If (Test-Path $filepath\errors.txt){
 
 try {
     $nltest = (nltest /DSGETDC:$domain) 2>> $filepath\errors.txt
-    $nltest | Out-File -FilePath $filepath\folder\t -Append
+    $nltest | Out-File -FilePath $filepath\nltest.txt -Append
     $attachments += "$filepath\nltest.txt"
 }
 catch{
