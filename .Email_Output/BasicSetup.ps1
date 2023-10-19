@@ -6,8 +6,6 @@ $hostname = hostname
 
 $attachments = @()
 
-$ErrorActionPreference = "Stop"
-
 
 # Output
 #-----------------------------------------------------------
