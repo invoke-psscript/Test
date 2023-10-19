@@ -64,4 +64,3 @@ catch{
         Send-MailMessage -SmtpServer mxb-008b7801.gslb.pphosted.com -From Reports@5288.IT -To 5288_IT@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
     }
 }
-
