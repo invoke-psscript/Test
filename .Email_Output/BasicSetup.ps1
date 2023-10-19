@@ -4,6 +4,8 @@ $filepath = "C:\5288_IT$\Logs"
 
 $hostname = hostname
 
+$domain = (Get-DnsClientGlobalSetting).SuffixSearchList[0]
+
 $attachments = @()
 
 
@@ -55,7 +57,7 @@ $attachments += "$filepath\errors.txt"
 # Send email report
 
 try{
-    Send-MailMessage -SmtpServer mail.((Get-DnsClientGlobalSetting).SuffixSearchList[0]) -From Reports@5288.IT -To 5288_IT@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
+    Send-MailMessage -SmtpServer mail.$domain -From Reports@5288.IT -To 5288_IT@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
 }
 catch{
     try{
