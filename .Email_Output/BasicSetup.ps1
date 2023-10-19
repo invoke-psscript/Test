@@ -45,7 +45,10 @@ catch{
     "winget error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
 }
 
-$attachments += "$filepath\winget.txt"
+If (Test-Path "$filepath\winget.txt"){
+    $attachments += "$filepath\winget.txt"
+}
+
 $attachments += "$filepath\errors.txt"
 
 
