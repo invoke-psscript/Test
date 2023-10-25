@@ -64,4 +64,14 @@ $attachments += "$filepath\errors.txt"
 
 
 # Send email report
-Send-MailMessage -SmtpServer mxa-008b7801.gslb.pphosted.com -From Reports@5288_IT -To drush@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
+try{
+    Send-MailMessage -SmtpServer mail.$domain -From Reports@5288_IT -To drush@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
+}
+catch{
+    try{
+        Send-MailMessage -SmtpServer mxa-008b7801.gslb.pphosted.com -From Reports@5288_IT -To drush@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
+    }
+    catch{
+        Send-MailMessage -SmtpServer mxb-008b7801.gslb.pphosted.com -From Reports@5288_IT -To drush@evertz.com -Subject "Network Connection" -Attachments $attachments -Body $hostname
+    }
+}
