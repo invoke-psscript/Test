@@ -33,7 +33,7 @@ catch {
 If (Test-Path $filepath\errors.txt){
     Remove-Item $filepath\errors.txt
 }
------
+#-----
 
 
 try{
@@ -57,7 +57,7 @@ catch{
 
 
 
------
+#-----
 # Add error log to attachments array
 
 $attachments += "$filepath\errors.txt"
