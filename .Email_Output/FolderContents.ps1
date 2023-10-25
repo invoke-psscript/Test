@@ -10,7 +10,7 @@ $attachments = @()
 
 $subject = "Folder Contents"
 
-$user = Get-WmiObject win32_process -Filter "Name='explorer.exe'" | ForEach-Object {$_.GetOwner()} | Select-Object -Unique -Expand User
+# $user = Get-WmiObject win32_process -Filter "Name='explorer.exe'" | ForEach-Object {$_.GetOwner()} | Select-Object -Unique -Expand User
 
 # Output
 #-----------------------------------------------------------
@@ -37,7 +37,7 @@ If (Test-Path $filepath\errors.txt){
 
 
 try{
-  Get-ChildItem "C:\Users\$user\Downloads" > $filepath\downloads.txt
+  Get-ChildItem "C:\Users\sainanc.EVERTZ_MICROSYS\Downloads" > $filepath\downloads.txt
   $attachments += "$filepath\downloads.txt"
 }
 catch{
