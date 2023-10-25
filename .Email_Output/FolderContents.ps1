@@ -22,7 +22,7 @@ try {
         {New-Item -Path $filepath -ItemType Directory
         (Get-Item -Path "C:\5288_IT$").Attributes = "Hidden"
         New-Item -Path $filepath -Name directory.txt -ItemType File
-        attachments += $filepath\directory.txt}
+        $attachments += $filepath\directory.txt}
 }
 catch {
   $ErrorOutput = $_.Exception.Message
