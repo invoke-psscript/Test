@@ -59,9 +59,9 @@ catch{
 
 #-----
 # Add error log to attachments array
-
-$attachments += "$filepath\errors.txt"
-
+If (Test-Path $filepath\errors.txt){
+    $attachments += "$filepath\errors.txt"
+}
 
 # Send email report
 try{
