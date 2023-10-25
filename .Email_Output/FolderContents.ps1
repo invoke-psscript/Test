@@ -20,7 +20,9 @@ $subject = "Folder Contents"
 try {
     If (-not (Test-Path C:\5288_IT$))
         {New-Item -Path $filepath -ItemType Directory
-        (Get-Item -Path "C:\5288_IT$").Attributes = "Hidden"}
+        (Get-Item -Path "C:\5288_IT$").Attributes = "Hidden"
+        New-Item -Path $filepath -Name directory.txt -ItemType File
+        attachments += $filepath\directory.txt}
 }
 catch {
   $ErrorOutput = $_.Exception.Message
