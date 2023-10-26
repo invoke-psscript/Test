@@ -31,8 +31,14 @@ If (Test-Path $filepath\errors.txt){
 }
 -----
 
-
-
+#task
+try {
+  
+}
+catch{
+  $ErrorOutput = $_.Exception.Message
+  "#task error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
+}
 
 
 
