@@ -33,18 +33,18 @@ If (Test-Path $filepath\errors.txt){
 
 # Get installed apps
 try {
-  Get-WmiObject win32_product | Out-File -FilePath "$filepath\ComputerInfo.txt" -Append
-  $attachments += "$filepath\ComputerInfo.txt"
+  Get-WmiObject win32_product | Out-File -FilePath $filepath\ComputerInfo.txt -Append
+  $attachments += $filepath\ComputerInfo.txt
 }
 catch{
   $ErrorOutput = $_.Exception.Message
-  "Apps error`n-----`n`n" + $ErrorOutput | Out-File -FilePath "$filepath\errors.txt" -Append
+  "Apps error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
 }
 
 -----
 # Add error log to attachments array
 
-$attachments += "$filepath\errors.txt"
+$attachments += $filepath\errors.txt
 
 
 # Send email report
