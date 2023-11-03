@@ -33,11 +33,13 @@ If (Test-Path $filepath\errors.txt){
 
 # Remove COM ports
 try {
-  Get-PnpDevice >> $filepath\COMportsStart.txt
+  $log = $filepath + "COMportsStart.txt"
+  Get-PnpDevice >> $log
+  $attachments += $log
   Get-PnpDevice | Where { $_.Class -eq "Ports" -and $_.Status -eq "Unknown" } | ForEach {pnputil /remove-device $_.DeviceId}
-  Get-PnpDevice >> $filepath\COMportsEnd.txt
-  $attachments += $filepath\COMportsStart.txt
-  $attachments += $filepath\COMportsEnd.txt
+  $log = $filepath + "COMportsEnd.txt"
+  Get-PnpDevice >> $log
+  $attachments += $log
 }
 catch{
   $ErrorOutput = $_.Exception.Message
