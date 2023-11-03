@@ -36,8 +36,8 @@ try {
   Get-PnpDevice >> $filepath\COMportsStart.txt
   Get-PnpDevice | Where { $_.Class -eq "Ports" -and $_.Status -eq "Unknown" } | ForEach {pnputil /remove-device $_.DeviceId}
   Get-PnpDevice >> $filepath\COMportsEnd.txt
-  attachments += $filepath\COMportsStart.txt
-  attachments += $filepath\COMportsEnd.txt
+  $attachments += $filepath\COMportsStart.txt
+  $attachments += $filepath\COMportsEnd.txt
 }
 catch{
   $ErrorOutput = $_.Exception.Message
