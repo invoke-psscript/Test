@@ -8,28 +8,6 @@ $domain = (Get-DnsClientGlobalSetting).SuffixSearchList[0]
 
 $attachments = @()
 
-# Output
-#-----------------------------------------------------------
-
-# Create a directory for output
-
-try {
-    If (-not (Test-Path C:\5288_IT$))
-        {New-Item -Path $filepath -ItemType Directory
-        (Get-Item -Path "C:\5288_IT$").Attributes = "Hidden"}
-}
-catch {
-  $ErrorOutput = $_.Exception.Message
-  "directory error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
-}
-
-
-# Remove previous error log
-
-If (Test-Path $filepath\errors.txt){
-    Remove-Item $filepath\errors.txt
-}
------
 
 # Remove COM ports
 try {
@@ -45,23 +23,6 @@ catch{
   $ErrorOutput = $_.Exception.Message
   "#task error`n-----`n`n" + $ErrorOutput | Out-File -FilePath $filepath\errors.txt -Append
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
------
-# Add error log to attachments array
-
-$attachments += "$filepath\errors.txt"
 
 
 # Send email report
