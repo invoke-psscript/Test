@@ -154,14 +154,14 @@ Get-CimInstance -Namespace root/wmi -ClassName wmimonitorid | Select-Object @{Na
         "None"
     }
     else {
-        ($_.UserFriendlyName | foreach { [char]$_}) -join ""
+        ($_.UserFriendlyName -ne 0 | foreach { [char]$_}) -join ""
     }
 }}, @{Name="MonitorSerial";Expression={
     if ($_.SerialNumberIDLength -eq 0) {
         "N/A"
     }
     else {
-        ($_.SerialNumberID | foreach { [char]$_}) -join ""
+        ($_.SerialNumberID -ne 0 | foreach { [char]$_}) -join ""
     }
 }} | Out-File $folder\"monitor.txt"
 #-----
