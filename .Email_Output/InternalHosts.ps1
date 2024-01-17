@@ -170,17 +170,20 @@ Get-CimInstance -Namespace root/wmi -ClassName wmimonitorid | Select-Object @{Na
 #----------
 #FILE CHECK
 #-----
-#$driveroot = Get-PsDrive -PsProvider FileSystem | ForEach-Object {$_.Root} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
-#$drivewindows = Get-PsDrive -PsProvider FileSystem | ForEach-Object {"$($_.Root)Windows"} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
+$driveroot = Get-PsDrive -PsProvider FileSystem | ForEach-Object {$_.Root} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
+$drivewindows = Get-PsDrive -PsProvider FileSystem | ForEach-Object {"$($_.Root)Windows"} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
 #-----
-#$filecheck = "`nFILE CHECK",
-#"`ndriveroot`n--------------------", $driveroot,
-#"`ndrivewindows`n--------------------", $drivewindows
-#$filecheck | Out-File $folder\"filecheck.txt"
+$filecheck = "`nFILE CHECK",
+"`ndriveroot`n--------------------", $driveroot,
+"`ndrivewindows`n--------------------", $drivewindows
+$filecheck | Out-File $folder\"filecheck.txt"
+#-----
+#----------
+
 #----------
 #EMAIL OUTPUT
 #-----
-$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"monitor.txt" -Raw)
+$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"monitor.txt" -Raw) + (Get-Content $folder\"filecheck.txt" -Raw)
 $mail = "mail." + $compsys.Domain
 Write-Host $Body
 Send-MailMessage -SmtpServer $mail -To "drush@evertz.com" -From "Reports@5288.IT" -Body $Body -Subject $compsys.DnsHostname
