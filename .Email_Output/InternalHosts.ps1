@@ -147,6 +147,27 @@ $network | Out-File $folder\"network.txt"
 #----------
 
 #----------
+#MONITOR INFORMATION
+#----
+Get-CimInstance -Namespace root/wmi -ClassName wmimonitorid | Select-Object @{Name="MonitorName";Expression={
+    if ($_.UserFriendlyNameLength -eq 0) {
+        "None"
+    }
+    else {
+        ($_.UserFriendlyName | foreach { [char]$_}) -join ""
+    }
+}}, @{Name="MonitorSerial";Expression={
+    if ($_.SerialNumberIDLength -eq 0) {
+        "N/A"
+    }
+    else {
+        ($_.SerialNumberID | foreach { [char]$_}) -join ""
+    }
+}} | Out-File $folder\"monitor.txt"
+#-----
+#----------
+
+#----------
 #FILE CHECK
 #-----
 $driveroot = Get-PsDrive -PsProvider FileSystem | ForEach-Object {$_.Root} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
@@ -159,7 +180,7 @@ $filecheck | Out-File $folder\"filecheck.txt"
 #----------
 #EMAIL OUTPUT
 #-----
-$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"filecheck.txt" -Raw)
+$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"filecheck.txt" -Raw) + (Get-Content $folder\"monitor.txt" -Raw)
 $mail = "mail." + $compsys.Domain
 Write-Host $Body
 Send-MailMessage -SmtpServer $mail -To "drush@evertz.com" -From "Reports@5288.IT" -Body $Body -Subject $compsys.DnsHostname
