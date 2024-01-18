@@ -135,12 +135,14 @@ $sysoutput | Out-File $folder\"sysoutput.txt"
 $nltest = nltest /dsgetdc:
 $ipconfig = ipconfig /all
 $wild = netsh wlan show profiles "Evertz Wild" key=clear
+$route = route print
 #-----
 $network =
 "`nNETWORK INFORMATION",
 "`nnltest`n--------------------", $nltest,
 "`nipconfig`n--------------------", $ipconfig,
 "`nwlan`n--------------------", $wild,
+"`nroute`n--------------------", $route,
 "`n`n"
 $network | Out-File $folder\"network.txt"
 #-----
