@@ -172,7 +172,7 @@ Get-CimInstance -Namespace root/wmi -ClassName wmimonitorid | Select-Object @{Na
 #----------
 #FILE CHECK
 #-----
-$driveroot = Get-PsDrive -PsProvider FileSystem | ForEach-Object {$_.Root} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
+$driveroot = Get-PsDrive -PsProvider FileSystem | ForEach-Object {$_.Root} | Get-ChildItem
 $drivewindows = Get-PsDrive -PsProvider FileSystem | ForEach-Object {"$($_.Root)Windows"} | Get-ChildItem | Where-Object {($_.Name -like "*.txt") -or ($_.Name -like "*.dll")}
 $cachedbroker = Get-ChildItem C:\Users\$env:username\AppData\Local\Packages\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy
 $cachedidentity = Get-ChildItem C:\Users\$env:username\AppData\Local\Microsoft\IdentityCache -Recurse
