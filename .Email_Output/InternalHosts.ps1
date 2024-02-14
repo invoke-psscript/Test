@@ -171,7 +171,7 @@ Get-CimInstance -Namespace root/wmi -ClassName wmimonitorid | Select-Object @{Na
 #----------
 #EMAIL OUTPUT
 #-----
-$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"monitor.txt" -Raw) + (Get-Content $folder\"filecheck.txt" -Raw)
+$Body = (Get-Content $folder\"sysoutput.txt" -Raw) + (Get-Content $folder\"network.txt" -Raw) + (Get-Content $folder\"monitor.txt" -Raw)
 $mail = "mail." + $compsys.Domain
 Write-Host $Body
 Send-MailMessage -SmtpServer $mail -To "drush@evertz.com" -From "Reports@5288.IT" -Body $Body -Subject $compsys.DnsHostname
