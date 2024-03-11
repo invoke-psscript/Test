@@ -1,6 +1,8 @@
 Write-Host (Get-Date)
 
-$dnsserver = (get-dnsclientserveraddress (get-netadapter -physical | where {$_.Status -eq "Up"}).Name | where addressfamily -eq 2).serveraddresses
+$dnsserver = @()
+
+$dnsserver += (get-dnsclientserveraddress (get-netadapter -physical | where {$_.Status -eq "Up"}).Name | where addressfamily -eq 2).serveraddresses
 
 Write-Host ("DNS Servers are $dnsserver")
 
