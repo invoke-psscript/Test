@@ -6,7 +6,7 @@ Write-Host ("DNS Servers are $dnsserver")
 
 $ntp = $dnsserver[0]
 
-Write-Host "Using $ntp as ntp server"
+Write-Host ("Using $ntp as ntp server")
 
 net stop w32time
 
