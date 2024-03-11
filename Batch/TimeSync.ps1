@@ -1,5 +1,7 @@
 Write-Host (Get-Date)
 
+Write-Host (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "DynamicDaylightTimeDisabled")
+
 $dnsserver = @()
 
 $dnsserver += (get-dnsclientserveraddress (get-netadapter -physical | where {$_.Status -eq "Up"}).Name | where addressfamily -eq 2).serveraddresses
