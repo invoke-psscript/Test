@@ -4,7 +4,7 @@ Write-Host "Using $ntp as ntp server"
 
 net stop w32time
 
-w32tm /config /syncfromflags:manual /manualpeerlist:$ntp
+w32tm /config /syncfromflags:manual /manualpeerlist:$ntp[0]
 
 net start w32time
 
