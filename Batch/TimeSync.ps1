@@ -1,10 +1,12 @@
-$ntp = (Get-DnsClientServerAddress).ServerAddresses | Where {$_ -like "10.*"}
+$dnsserver = (Get-DnsClientServerAddress | where {$_.InterfaceAlias -eq (get-netadapter -physical | where {$_.status -eq "up"}).name -and $_.AddressFamily -eq 2}).serveraddresses
 
-Write-Host "Using $ntp[0] as ntp server"
+$ntp = $dnsserver[0]
+
+Write-Host "Using $ntp as ntp server"
 
 net stop w32time
 
-w32tm /config /syncfromflags:manual /manualpeerlist:$ntp[0]
+w32tm /config /syncfromflags:manual /manualpeerlist:$ntp
 
 net start w32time
 
