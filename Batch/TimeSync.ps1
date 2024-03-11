@@ -1,3 +1,5 @@
+Write-Host (Get-Date)
+
 $dnsserver = (get-dnsclientserveraddress (get-netadapter -physical | where {$_.Status -eq "Up"}).Name | where addressfamily -eq 2).serveraddresses
 
 $ntp = $dnsserver[0]
@@ -13,3 +15,5 @@ net start w32time
 w32tm /config /update
 
 w32tm /resync /rediscover
+
+Write-Host(Get-Date)
