@@ -1,4 +1,4 @@
-$dnsserver = @((Get-DnsClientServerAddress | where {$_.InterfaceAlias -eq (get-netadapter -physical | where {$_.status -eq "up"}).name -and $_.AddressFamily -eq 2}).serveraddresses)
+$dnsserver = (get-dnsclientserveraddress (get-netadapter -physical | where {$_.Status -eq "Up"}).Name | where addressfamily -eq 2).serveraddresses
 
 $ntp = $dnsserver[0]
 
