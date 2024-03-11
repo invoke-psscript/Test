@@ -1,6 +1,6 @@
 $ntp = (Get-DnsClientServerAddress).ServerAddresses | Where {$_ -like "10.*"}
 
-Write-Host "Using $ntp as ntp server"
+Write-Host "Using $ntp[0] as ntp server"
 
 net stop w32time
 
