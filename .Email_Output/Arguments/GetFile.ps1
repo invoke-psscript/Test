@@ -1,6 +1,6 @@
 param(
   [Parameter(Mandatory=$true)]
-  [string]$arg1
+  [string]$arg1,
   [Parameter(Mandatory=$true)]
   [string]$arg2
 )
