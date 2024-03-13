@@ -7,10 +7,10 @@ param(
 
 # arg1 is filepath, arg2 is filename
 
-$file = Get-ChildItem $arg1 | Where Name -like ($arg2 + "*")
+$file = (Get-ChildItem $arg1 | Where Name -like ($arg2 + "*")).Name
 
 attachments = @()
 
-attachments += ($file)
+attachments += ($arg1\$file)
 
 Send-MailMessage -SmtpServer ("mail." + (Get-WmiObject win32_computersystem)) -To "drush@evertz.com" -From "Reports@5288.IT" -Subject GetFile -Attachments $attachments
