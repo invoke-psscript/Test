@@ -7,7 +7,7 @@ param(
 
 # arg1 is filepath, arg2 is filename
 
-$file = Get-ChildItem $arg1 | Where Name -like "$arg2*"
+$file = Get-ChildItem $arg1 | Where Name -like ($arg2 + "*")
 
 attachments = @()
 
