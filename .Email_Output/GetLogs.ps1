@@ -1,4 +1,4 @@
-cat $Args[0] > C:\Users\$env:username\Documents\logs.txt
+cat $Args[0] > $env:TEMP\logs.txt
 
 $hostname = hostname
 
