@@ -25,7 +25,7 @@ while ((Get-Date) -lt $complete){
     Start-Sleep -Seconds 30
 }
 
-while (-not (Test-NetConnection 5288IT-TEST){
+while (-not (Test-NetConnection 5288IT-TEST)){
 
   "Waiting to send output" >> C:\Users\Administrator\Desktop\$filename.txt
 
